@@ -1,7 +1,7 @@
 <?php
 //membuat file header.php dengan bootstrap cdn dan jquer cdn
 //include from base url config/connect.php
-include ($_SERVER['DOCUMENT_ROOT'].'/kesmas/config/connect.php');
+include ($_SERVER['DOCUMENT_ROOT'].'/karyawan/config/connect.php');
 //membuat variable kosong
 $username = "";
 $password = "";
@@ -63,7 +63,7 @@ if(isset($_SESSION['username'])){
         }
     }
     //membuat tombol logout pada header jika ada session
-    $status= "<a href='http://".$_SERVER['HTTP_HOST']."/kesmas/auth/logout.php' class='btn btn-danger'>Logout</a>";
+    $status= "<a href='http://".$_SERVER['HTTP_HOST']."/karyawan/auth/logout.php' class='btn btn-danger'>Logout</a>";
 }else{
     //jika belum ada sesion maka tombol login
     $status= "<a href='login.php' class='btn btn-primary'>Login</a>";
@@ -82,10 +82,10 @@ if(isset($_SESSION['username'])){
                 </li>
                 <?php if(isset($_SESSION['username'])){ ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php if($_SERVER['REQUEST_URI'] == "/kesmas/admin/input/"){echo "active";} ?>" href="<?php echo "http://".$_SERVER['HTTP_HOST'].'/kesmas/admin/input';?>" tabindex="-1" aria-disabled="true">Input Data</a>
+                    <a class="nav-link <?php if($_SERVER['REQUEST_URI'] == "/karyawan/admin/input/"){echo "active";} ?>" href="<?php echo "http://".$_SERVER['HTTP_HOST'].'/karyawan/admin/input';?>" tabindex="-1" aria-disabled="true">Input Data</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php if($_SERVER['REQUEST_URI'] == "/kesmas/admin/riwayat/"){echo "active";} ?>" href="<?php echo "http://".$_SERVER['HTTP_HOST'].'/kesmas/admin/riwayat';?>" tabindex="-1" aria-disabled="true">Riwayat Pendaftar</a>
+                    <a class="nav-link <?php if($_SERVER['REQUEST_URI'] == "/karyawan/admin/riwayat/"){echo "active";} ?>" href="<?php echo "http://".$_SERVER['HTTP_HOST'].'/karyawan/admin/riwayat';?>" tabindex="-1" aria-disabled="true">Riwayat Pendaftar</a>
                 </li>
                 <?php
                 }
