@@ -4,7 +4,7 @@ function session_checker(){
     //jika tidak ada sesi maka akan dialihkan ke halaman login
     if(!isset($_SESSION['username'])){
         //header location with $_SERVER document root
-        header("location:http://".$_SERVER['HTTP_HOST']."/khs/auth/login.php");
+        header("location:http://".$_SERVER['HTTP_HOST']."/kesmas/auth/login.php");
     }
 }
 ?>
