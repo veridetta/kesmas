@@ -75,35 +75,35 @@ if(isset($_SESSION['username'])){
                         <h3 class="card-title">Data Pasien</h3>
                     </div>
                     <div class="card-body">
+                        <!-- if get success=1 maka tampilkan pesan berhasil dan jika success=0 maka gagal -->
+                            <?php
+                            if(isset($_GET['success'])){
+                                if($_GET['success'] == 1){
+                                    echo "<div class='alert alert-success' role='alert'>Data berhasil ditambahkan</div>";
+                                }else{
+                                    echo "<div class='alert alert-danger' role='alert'>Data gagal ditambahkan</div>";
+                                }
+                            }
+                            ?>
                         <div class="col-12 table-responsive">
-                            <table id="tb_pasien" class="table table-bordered table-striped ">
+                            <table id="tb_karyawan" class="table table-bordered table-striped ">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Id</th>
                                         <th>Nama</th>
-                                        <!-- tempat lahir-->    
-                                        <th>Tempat Lahir</th>
-                                        <!-- tanggal lahir-->
-                                        <th>Tanggal Lahir</th>
+                                        <!-- alamat -->
+                                        <th>Alamat</th>
+                                        <!-- tempat tanggal lahir-->    
+                                        <th>Tempat Tanggal Lahir</th>
                                         <!-- jenis kelamin-->
                                         <th>Jenis Kelamin</th>
                                         <!-- agama -->
                                         <th>Agama</th>
-                                        <!-- jenjang pendidikan -->
-                                        <th>Jenjang Pendidikan</th>
-                                        <!-- tahun lulus -->
-                                        <th>Tahun Lulus</th>
                                         <!-- no hp -->
                                         <th>No HP</th>
                                         <!-- email -->
                                         <th>Email</th>
-                                        <!-- tinggi badan -->
-                                        <th>Tinggi Badan</th>
-                                        <!-- berat badan -->
-                                        <th>Berat Badan</th>
-                                        <!-- foto -->
-                                        <th>Foto</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -120,13 +120,13 @@ if(isset($_SESSION['username'])){
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Ubah Data Pasien</h4>
+                <h4 class="modal-title">Ubah Data Karyawan</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form_ubah" enctype="multipart/form-data">
+                <form id="form_ubah" >
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
@@ -140,18 +140,20 @@ if(isset($_SESSION['username'])){
                                 <input type="text" class="form-control" id="nama" name="nama">
                             </div>
                         </div>
+                        <!-- textarea alamat  -->           
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="tempat_lahir">Tempat Lahir</label>
-                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
+                                <label for="alamat">Alamat</label>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="tanggal_lahir">Tanggal Lahir</label>
-                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
+                                <label for="tempat_lahir">Tempat Tanggal Lahir</label>
+                                <input type="text" class="form-control" id="tempat_tanggal_lahir" name="tempat_tanggal_lahir">
                             </div>
                         </div>
+                        
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="jenis_kelamin">Jenis Kelamin</label>
@@ -177,30 +179,6 @@ if(isset($_SESSION['username'])){
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="jenjang_pendidikan">Jenjang Pendidikan</label>
-                                <select class="form-control" id="jenjang_pendidikan" name="jenjang_pendidikan">
-                                    <option value="">Pilih Jenjang Pendidikan</option>
-                                    <option value="SD">SD</option>
-                                    <option value="SMP">SMP</option>
-                                    <option value="SMA">SMA</option>
-                                    <option value="D1">D1</option>
-                                    <option value="D2">D2</option>
-                                    <option value="D3">D3</option>
-                                    <option value="D4">D4</option>
-                                    <option value="S1">S1</option>
-                                    <option value="S2">S2</option>
-                                    <option value="S3">S3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="tahun_lulus">Tahun Lulus</label>
-                                <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
                                 <label for="no_hp">No HP</label>
                                 <input type="text" class="form-control" id="no_hp" name="no_hp">
                             </div>
@@ -209,18 +187,6 @@ if(isset($_SESSION['username'])){
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" id="email" name="email">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="tinggi_badan">Tinggi Badan</label>
-                                <input type="text" class="form-control" id="tinggi_badan" name="tinggi_badan">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="berat_badan">Berat Badan</label>
-                                <input type="text" class="form-control" id="berat_badan" name="berat_badan">
                             </div>
                         </div>
                     </div>
@@ -237,7 +203,7 @@ if(isset($_SESSION['username'])){
     $(document).ready(function() {
         $.fn.dataTable.ext.errMode = 'none';
         //datatables with server side processing
-        $('#tb_pasien').DataTable({
+        $('#tb_karyawan').DataTable({
             "processing": true,
             "serverSide": true,
             "ajax": {
@@ -250,7 +216,7 @@ if(isset($_SESSION['username'])){
             "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                 var index = iDisplayIndex +1;
                 $('td:eq(0)',nRow).html(index);
-                $('td:eq(14)',nRow).html(`
+                $('td:eq(9)',nRow).html(`
                     <a href="../show/index.php?id=${aData[1]}" class="btn btn-primary btn-sm btn_show" style='margin-bottom:2px;'>Lihat</a>
                     <a href="edit.php?id=${aData[1]}" class="btn btn-warning btn-sm editUser" data-toggle='modal' data-target='#modal_ubah' style='margin-bottom:2px;'>Edit</a>
                     <a href="#" id="${aData[1]}" class="btn btn-danger btn-sm btn_hapus" >Hapus</a>
@@ -258,34 +224,26 @@ if(isset($_SESSION['username'])){
                 //set id iinput
                 $('#id').val(aData[1]);
                 $('#nama').val(aData[2]);
-                $('#tempat_lahir').val(aData[3]);
-                $('#tanggal_lahir').val(aData[4]);
+                $('#alamat').val(aData[3]);
+                $('#tempat_tanggal_lahir').val(aData[4]);
                 $('#jenis_kelamin').val(aData[5]);
                 $('#agama').val(aData[6]);
-                $('#jenjang_pendidikan').val(aData[7]);
-                $('#tahun_lulus').val(aData[8]);
-                $('#no_hp').val(aData[9]);
-                $('#email').val(aData[10]);
-                $('#tinggi_badan').val(aData[11]);
-                $('#berat_badan').val(aData[12]);
-                
+                $('#no_hp').val(aData[7]);
+                $('#email').val(aData[8]);
+
+
                 return nRow;
             },
             //menambahkan tombol visibility, copy, csv, excel, pdf, print
             columnDefs: [
                 {
-                    targets: [0,14],
+                    targets: [0,9],
                     className: 'text-center'
                 }
             ],
             //set column yang dapat di sort
             "columns": [
                 {"orderable": false},
-                {"orderable": true},
-                {"orderable": true},
-                {"orderable": true},
-                {"orderable": true},
-                {"orderable": true},
                 {"orderable": true},
                 {"orderable": true},
                 {"orderable": true},
@@ -336,29 +294,24 @@ if(isset($_SESSION['username'])){
                    //var id
                      var ids= dtrow.find('td:eq(1)').text();
                         var nama= dtrow.find('td:eq(2)').text();
-                        var tempat_lahir= dtrow.find('td:eq(3)').text();
-                        var tanggal_lahir= dtrow.find('td:eq(4)').text();
+                        var alamat= dtrow.find('td:eq(3)').text();
+                        var tempat_tanggal_lahir= dtrow.find('td:eq(4)').text();
                         var jenis_kelamin= dtrow.find('td:eq(5)').text();
                         var agama= dtrow.find('td:eq(6)').text();
-                        var jenjang_pendidikan= dtrow.find('td:eq(7)').text();
-                        var tahun_lulus= dtrow.find('td:eq(8)').text();
-                        var no_hp= dtrow.find('td:eq(9)').text();
-                        var email= dtrow.find('td:eq(10)').text();
-                        var tinggi_badan= dtrow.find('td:eq(11)').text();
-                        var berat_badan= dtrow.find('td:eq(12)').text();
+                        var no_hp= dtrow.find('td:eq(7)').text();
+                        var email= dtrow.find('td:eq(8)').text();
+
+
                         //set value
                         $('#id').val(ids);
                         $('#nama').val(nama);
-                        $('#tempat_lahir').val(tempat_lahir);
-                        $('#tanggal_lahir').val(tanggal_lahir);
+                        $('#alamat').val(alamat);
+                        $('#tempat_tanggal_lahir').val(tempat_tanggal_lahir);
                         $('#jenis_kelamin').val(jenis_kelamin);
                         $('#agama').val(agama);
-                        $('#jenjang_pendidikan').val(jenjang_pendidikan);
-                        $('#tahun_lulus').val(tahun_lulus);
                         $('#no_hp').val(no_hp);
                         $('#email').val(email);
-                        $('#tinggi_badan').val(tinggi_badan);
-                        $('#berat_badan').val(berat_badan);
+                        
                     //ubah tipe ke edit
                     $('#tipe').val('edit');
 
@@ -392,7 +345,7 @@ if(isset($_SESSION['username'])){
                                             icon: "success",
                                         });
                                         //refresh table
-                                        $('#table_dosen').DataTable().ajax.reload();
+                                        $('#tb_karyawan').DataTable().ajax.reload();
                                     } else {
                                         swal("Data gagal dihapus!", {
                                             icon: "error",
@@ -429,7 +382,7 @@ if(isset($_SESSION['username'])){
                             icon: "success",
                         });
                         //reload table
-                        $('#tb_pasien').DataTable().ajax.reload();
+                        $('#tb_karyawan').DataTable().ajax.reload();
                     } else {
                         //swal gagal
                         swal("Data gagal diubah!", {

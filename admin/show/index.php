@@ -58,7 +58,7 @@ if(isset($_SESSION['username'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lihat Data Pasien</title>
+    <title>Lihat Data Karyawan</title>
     <?php
     //include assets.php
     include "../../include/assets.php";
@@ -67,23 +67,23 @@ if(isset($_SESSION['username'])){
 <body>
     <div class="container col-11" style="padding: 12px;">
         <div class="row">
-            <!-- Tampilan Lengkap kartu Hasil Studi Mahasiswa Selama satu semester--> 
+            <!-- Tampilan Lengkap Data Karyawan--> 
             <div class="col-12">
                 <div class="card" id="cetak">
                     <div class="card-header">
                         <!--judul text center-->
-                        <h3 class="text-center">Data Pasien</h3>
+                        <h3 class="text-center">Data Karyawan</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <!-- menampilkan data pasien -->
-                            <!-- foto  nama lengkap, tempat lahir, tanggal lahir, jenis kelamin, agama, jenjang pendidikan, tahun lulus, no hp, email, tinggi badan, berat badan -->
-                            <!-- ambil data dari table pasien where id = id yang dikirim dari halaman index.php -->
+                            <!-- menampilkan data karyawan -->
+                            <!-- foto  nama lengkap, alamat, tempat tanggal lahir, jenis kelamin, agama,  no hp, email-->
+                            <!-- ambil data dari table karyawan where id = id yang dikirim dari halaman index.php -->
                             <?php
                             //membuat variable id
                             $id = $_GET['id'];
                             //membuat query
-                            $sql = "SELECT * FROM pasien WHERE id='$id'";
+                            $sql = "SELECT * FROM karyawan WHERE id='$id'";
                             //menjalankan query
                             $query = mysqli_query($connect, $sql);
                             //menghitung jumlah data yang ditemukan
@@ -97,12 +97,16 @@ if(isset($_SESSION['username'])){
                             }
                             ?>
                             <!-- foto di sebelah kiri, nama lengkap di sebelah kanan -->
+                            <!-- membuat angka random dari 1-999 -->
+                            <?php
+                            $random = rand(1,999);
+                            ?>
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-4">
                                         <!-- div col 12 -->
                                         <div class="col-12">
-                                            <img src="<?php echo "http://".$_SERVER['HTTP_HOST']."/kesmas/img/".$data['foto'];?>" alt="" class="img-fluid col-12">
+                                            <img src="https://gravatar.com/avatar/43240267c96887deafbc55190fbda6e6?s=400&d=mp&r=x" alt="" class="img-fluid col-12">
                                         </div>
                                     </div>
                                     <div class="col-8">
@@ -112,12 +116,12 @@ if(isset($_SESSION['username'])){
                                                 <td><?php echo $data['nama_lengkap']; ?></td>
                                             </tr>
                                             <tr>
-                                                <td>Tempat Lahir</td>
-                                                <td><?php echo $data['tempat_lahir']; ?></td>
+                                                <td>Alamat</td>
+                                                <td><?php echo $data['alamat']; ?></td>
                                             </tr>
                                             <tr>
-                                                <td>Tanggal Lahir</td>
-                                                <td><?php echo $data['tanggal_lahir']; ?></td>
+                                                <td>Tempat Tanggal Lahir</td>
+                                                <td><?php echo $data['tempat_tanggal_lahir']; ?></td>
                                             </tr>
                                             <tr>
                                                 <td>Jenis Kelamin</td>
@@ -128,28 +132,12 @@ if(isset($_SESSION['username'])){
                                                 <td><?php echo $data['agama']; ?></td>
                                             </tr>
                                             <tr>
-                                                <td>Jenjang Pendidikan</td>
-                                                <td><?php echo $data['jenjang_pendidikan']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tahun Lulus</td>
-                                                <td><?php echo $data['tahun_lulus']; ?></td>
-                                            </tr>
-                                            <tr>
                                                 <td>No HP</td>
                                                 <td><?php echo $data['no_hp']; ?></td>
                                             </tr>
                                             <tr>
                                                 <td>Email</td>
                                                 <td><?php echo $data['email']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tinggi Badan</td>
-                                                <td><?php echo $data['tinggi_badan']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Berat Badan</td>
-                                                <td><?php echo $data['berat_badan']; ?></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -199,7 +187,7 @@ if(isset($_SESSION['username'])){
                                     var pdfWidth = pdf.internal.pageSize.getWidth();
                                     var pdfHeight = (imgProp.height * pdfWidth) / imgProp.width;
                                     pdf.addImage(myImage, 'png', 0, 0, pdfWidth, pdfHeight); // 2: 19
-                                    pdf.save(`Data Pasien <?php echo $data['nama_lengkap'];?>.pdf`);
+                                    pdf.save(`Data Karyawan <?php echo $data['nama_lengkap'];?>.pdf`);
                                 }
                             });
                         }

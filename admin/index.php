@@ -4,5 +4,5 @@
 include "../../include/session_checker.php";
 //jika sudah ada session
 //redirect ke input
-header("location:/input");
+header("location:riwayat");
 ?>

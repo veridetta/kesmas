@@ -85,7 +85,7 @@ if(isset($_SESSION['username'])){
                     <a class="nav-link <?php if($_SERVER['REQUEST_URI'] == "/kesmas/admin/input/"){echo "active";} ?>" href="<?php echo "http://".$_SERVER['HTTP_HOST'].'/kesmas/admin/input';?>" tabindex="-1" aria-disabled="true">Input Data</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php if($_SERVER['REQUEST_URI'] == "/kesmas/admin/riwayat/"){echo "active";} ?>" href="<?php echo "http://".$_SERVER['HTTP_HOST'].'/kesmas/admin/riwayat';?>" tabindex="-1" aria-disabled="true">Riwayat</a>
+                    <a class="nav-link <?php if($_SERVER['REQUEST_URI'] == "/kesmas/admin/riwayat/"){echo "active";} ?>" href="<?php echo "http://".$_SERVER['HTTP_HOST'].'/kesmas/admin/riwayat';?>" tabindex="-1" aria-disabled="true">Riwayat Pendaftar</a>
                 </li>
                 <?php
                 }

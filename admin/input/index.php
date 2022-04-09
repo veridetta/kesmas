@@ -70,19 +70,30 @@ if(isset($_SESSION['username'])){
         <div class="row">
             <div class="col-12">
                 <h3>Input Data</h3>
-                <!-- Membuat form input data pasien nama lengkap, tempat lahir, tanggal lahir, jenis kelamin, agama, jenjang pendidikan, tahun lulus, no hp, email, tinggi badan, berat badan, foto -->
-                <form action="data/tambah.php" method="POST" enctype="multipart/form-data">
+                <!-- if get success=1 maka tampilkan pesan berhasil dan jika success=0 maka gagal -->
+                <?php
+                if(isset($_GET['success'])){
+                    if($_GET['success'] == 1){
+                        echo "<div class='alert alert-success' role='alert'>Data berhasil ditambahkan</div>";
+                    }else{
+                        echo "<div class='alert alert-danger' role='alert'>Data gagal ditambahkan</div>";
+                    }
+                }
+                ?>
+                <!-- Membuat form input data karyawan nama lengkap, tempat lahir, tanggal lahir, jenis kelamin, agama, jenjang pendidikan, tahun lulus, no hp, email, tinggi badan, berat badan, foto -->
+                <form action="data/tambah_admin.php" method="POST">
                     <div class="form-group">
                         <label for="nama">Nama Lengkap</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap" required>
                     </div>
+                    <!-- alamat textarea-->
                     <div class="form-group">
-                        <label for="tempat_lahir">Tempat Lahir</label>
-                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Masukkan Tempat Lahir" required>
+                        <label for="alamat">Alamat</label>
+                        <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Masukkan Alamat" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="tanggal_lahir">Tanggal Lahir</label>
-                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukkan Tanggal Lahir" required>
+                        <label for="tempat_tanggal_lahir">Tempat Tanggal Lahir</label>
+                        <input type="text" class="form-control" id="tempat_tanggal_lahir" name="tempat_tanggal_lahir" placeholder="Masukkan Tempat Lahir" required>
                     </div>
                     <div class="form-group">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
@@ -103,26 +114,7 @@ if(isset($_SESSION['username'])){
                             <option value="Budha">Budha</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="jenjang_pendidikan">Jenjang Pendidikan</label>
-                        <select class="form-control" id="jenjang_pendidikan" name="jenjang_pendidikan" required>
-                            <option value="">Pilih Jenjang Pendidikan</option>
-                            <option value="SD">SD</option>
-                            <option value="SMP">SMP</option>
-                            <option value="SMA">SMA</option>
-                            <option value="D1">D1</option>
-                            <option value="D2">D2</option>
-                            <option value="D3">D3</option>
-                            <option value="D4">D4</option>
-                            <option value="S1">S1</option>
-                            <option value="S2">S2</option>
-                            <option value="S3">S3</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="tahun_lulus">Tahun Lulus</label>
-                        <input type="number" class="form-control" id="tahun_lulus" name="tahun_lulus" placeholder="Masukkan Tahun Lulus" required>
-                    </div>
+                    
                     <div class="form-group">
                         <label for="no_hp">No HP</label>
                         <input type="number" class="form-control" id="no_hp" name="no_hp" placeholder="Masukkan No HP" required>
@@ -130,18 +122,6 @@ if(isset($_SESSION['username'])){
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="tinggi_badan">Tinggi Badan</label>
-                        <input type="number" class="form-control" id="tinggi_badan" name="tinggi_badan" placeholder="Masukkan Tinggi Badan" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="berat_badan">Berat Badan</label>
-                        <input type="number" class="form-control" id="berat_badan" name="berat_badan" placeholder="Masukkan Berat Badan" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="foto">Foto</label>
-                        <input type="file" class="form-control" id="foto" name="foto" required>
                     </div>
                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </form>
